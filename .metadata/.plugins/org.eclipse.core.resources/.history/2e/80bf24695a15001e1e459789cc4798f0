@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	// 단순이동, 값을 전달(parameter)
+	//response.sendRedirect("index3.jsp"); //link 이동
+	//짐을싸자
+	
+	// 이동 , 값을 전달(object);
+	pageContext.forward("index3.jsp"); // 이동
+%>
+</body>
+</html>

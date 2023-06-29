@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- html 주석문 (jsp에도 사용은 가능  -->
+<%-- jsp 주석문 --%> 
+<%--
+	Java Server page --> DB접근이 용이(업제든접근 가능)
+	EJB -> Spring frame work-> Spring Boot
+	
+	Servlet = java(html)
+	JSP  = html(java)
+ --%>
+ <h3>Hello JSP</h3>
+ <p>welcome to JSP world</p>
+ <%
+	// java영역
+	// script + applet = scriptlet
+	
+	/*
+	 범위 주석문
+	*/
+	// int number=0;
+ %>
+</body>
+</html>

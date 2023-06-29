@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+
+<p id="demo"></p>
+<br>
+<button type="button">click</button>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("button").click(function(){
+		
+		$.ajax({
+			url:"user",
+			type:"get",
+		//	data:"id=abc&pw=123",
+			data:{ "id":"abc", "pw":"123" },
+			success:function( resp ){
+				// alert('success');
+				
+				// String
+				// alert(JSON.stringify(resp));
+				// alert(resp.str);
+				
+				// list
+				// alert(JSON.stringify(resp));
+				// $("#demo").html(resp.list[0].name);
+				/*
+				let txt = "";
+				for(i = 0;i < resp.list.length; i++){
+					txt += resp.list[i].name + " "
+							+ resp.list[i].id + " "
+							+ resp.list[i].address + "<br>";								
+				}
+				
+				$("#demo").html(txt);
+				*/
+				
+				// map
+				// alert(JSON.stringify(resp));
+				
+				let json = resp.map.title;
+				$("#demo").html(json);
+			},
+			error:function(){
+				alert('error');
+			}			
+		});
+	});
+	
+});
+
+</script>
+
+</body>
+</html>
