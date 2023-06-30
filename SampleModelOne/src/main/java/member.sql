@@ -13,6 +13,7 @@ where id='abc';
 
 select * from member;
 
-
 delete from member
-where id ='1234';
+where id='abc';
+
+

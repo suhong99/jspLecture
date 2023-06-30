@@ -22,6 +22,7 @@ public class MemberDao {
 			}
 			return dao;
 		}
+		
 		public boolean getId(String id) {
 			String sql =   "    select count(*)"
 						+ "     from member "

@@ -20,7 +20,7 @@
 		%>
 		<script>
 		alert("환영합니다 <%=dto.getId() %>님");
-		
+		location.href = "bbslist.jsp"
 		</script>
 		<%
 	}else{

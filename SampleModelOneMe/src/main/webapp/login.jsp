@@ -5,15 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 
 <style type="text/css">
 .center{
 	margin : auto;
-	width: 60%;
-	border : 3px solid #0000ff;
+	width: 400px;
+	border :1px solid #000000;
 	padding : 10px;
 }
 </style>
@@ -24,12 +28,12 @@
 
 <div class = "center">
 <form action="loginAF.jsp" method="post">
-<table>
+<table class="table">
 <tr>
 	<th>아이디</th>
 	<td>
-		<input type="text" id="id" name="id" size="20"><br>
-		<input type="checkbox" id="chk_save_id"> id저장
+		<input type="text" class="form-control" id="id" name="id" size="20"><br>
+		<input type="checkbox" class="form-control" id="chk_save_id"> id저장
 	</td>
 </tr>
 <tr>
@@ -40,7 +44,7 @@
 </tr>
 <tr>
 	<td colspan="2" align="center">
-		<input type="submit" value="login">
+		<input type="submit" class="btn btn-primary" value="login">
 		<a href="regi.jsp">회원가입</a>
 		
 	</td>
