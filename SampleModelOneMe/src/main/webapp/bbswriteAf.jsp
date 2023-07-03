@@ -29,7 +29,7 @@
     		%>
 				<script type ="text/javascript">
 				alert("작성에 성공하셨습니다|");
-				location.href ="regi.jsp";
+				location.href ="bbslist.jsp";
 				</script>
 				<%
     } else {

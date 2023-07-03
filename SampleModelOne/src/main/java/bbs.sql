@@ -27,4 +27,17 @@ from bbs
 where seq=2;
 
 
+select count(*) from bbs;
 
+select seq,id, ref, step, depth, title, content, wdate, del, readcount
+from (select row_number()over(order by ref desc, step asc) as rnum,
+					seq,id, ref, step, depth, title, content, wdate, del, readcount
+	from bbs
+	order by ref desc, step asc) a
+where rnum between 1 and 10;
+-- limit 0,10;  -- limit 쓸 때는 rnum이 필요없어짐
+
+select seq,id, ref, step, depth, title, content, wdate, del, readcount
+from bbs
+order by ref desc,step asc
+limit 0,10;
