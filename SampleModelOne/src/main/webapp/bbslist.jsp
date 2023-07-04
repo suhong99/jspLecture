@@ -93,22 +93,36 @@ if(list == null || list.size() == 0){
 	</tr>
 	<%
 }else{
-	
 	for(int i = 0;i < list.size(); i++){
 		BbsDto bbs = list.get(i);
-		%>
-		<tr>
-			<td><%=i + 1 %></td>
-			<td style="text-align: left;">
-				<a href="bbsdetail.jsp?seq=<%=bbs.getSeq() %>">
-					<%= BbsUtil.arrow(bbs.getDepth()) %>			
-					<%= BbsUtil.titleDot(bbs.getTitle()) %>
-				</a>
-			</td>
-			<td><%=bbs.getReadcount() %></td>
-			<td><%=bbs.getId() %></td>
-		</tr>
-		<% 
+		if(bbs.getDel()==1){
+			%>
+			<tr>
+				<td><%= i + 1 %></td>
+				<td style="text-align: left;">
+					<a href="#">
+						삭제된 게시글 입니다.
+					</a>
+				</td>
+				<td><%= bbs.getReadcount() %></td>
+				<td><%= bbs.getId() %></td>
+			</tr>
+<%
+		} else {
+%>
+			<tr>
+				<td><%= i + 1 %></td>
+				<td style="text-align: left;">
+					<a href="bbsdetail.jsp?seq=<%= bbs.getSeq() %>">
+						<%= BbsUtil.arrow(bbs.getDepth()) %>
+						<%= BbsUtil.titleDot(bbs.getTitle()) %>
+					</a>
+				</td>
+				<td><%= bbs.getReadcount() %></td>
+				<td><%= bbs.getId() %></td>
+			</tr>
+<%
+		}
 	}
 }
 %>
@@ -129,7 +143,7 @@ if(list == null || list.size() == 0){
 		else{	// 그밖에 페이지
 			%>
 			<a href="#none" title="<%=i+1 %>페이지" onclick="goPage(<%=i %>)"
-				style="font-size: 15pt;color: #000; font-weight: bold;">
+				style="font-size: 15pt;color: #000; font-weight: bold; text-decoration: none;">
 				[<%=i + 1 %>]
 			</a>			
 			<%

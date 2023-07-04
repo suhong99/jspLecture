@@ -243,7 +243,7 @@ public class BbsDao {
 	}
 	
 	
-	
+	// 글 작성
 	public boolean bbswrite(BbsDto bbs) {
 		String sql = " 	insert into bbs(id, ref, step, depth, "
 				+ "						title, content, wdate, del, readcount) "
@@ -349,6 +349,7 @@ public class BbsDao {
 	}
 	
 	public void answerUpdate(int seq) {
+		
 		String sql = " update bbs"
 				+ " set step = step+1"
 				+ " where ref=(select ref from(select ref from bbs a where seq=?) A) "
@@ -374,8 +375,12 @@ public class BbsDao {
 			e.printStackTrace();
 		}finally {
 			DBClose.close(psmt, conn, null);
+			}
 		}
-		}
+	
+	
+	
+	
 	
 	public boolean answerInsert(int seq,BbsDto dto) {
 		String sql = " insert into bbs(id, ref, step, depth, "
@@ -415,7 +420,75 @@ public class BbsDao {
 		}
 		return count>0;
 	}
+	//삭제
+	
+		public boolean deleteBbs(int seq) {
+			String sql = " update bbs"
+					+ " set del = 1"
+					+ "		where seq=? ";
+			
+			boolean process = false;
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			try {
+				conn = DBConnection.getConnection();
+				System.out.println("delete 1/3 success");
+				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, seq);
+				System.out.println("delete 2/3 success");
 
+				psmt.executeUpdate();
+				System.out.println("delete 3/3 success");
+				
+				process = true;
+			} catch (SQLException e) {
+				System.out.println("delete fail");
+
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				DBClose.close(psmt, conn, null);
+				}
+			
+			return process; 
+			}
+	
+	// 글 수정
+		public boolean bbsupdate(int seq,BbsDto bbs) {
+			String sql = "UPDATE bbs "
+					+ "SET title = ?, content = ? "
+					+ "WHERE seq = ?";
+
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			
+			int count = 0;
+			
+			try {
+				conn = DBConnection.getConnection();
+				System.out.println("bbsupdate 1/3 success");
+				
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, bbs.getTitle());
+				psmt.setString(2, bbs.getContent());
+				psmt.setInt(3, seq);
+
+				System.out.println("bbsupdate 2/3 success");
+				
+				count = psmt.executeUpdate();
+				System.out.println("bbsupdate 3/3 success");			
+				
+			} catch (SQLException e) {
+				System.out.println("bbsupdate fail");
+				e.printStackTrace();
+			} finally {
+				DBClose.close(psmt, conn, null);
+			}
+			
+			return count>0?true:false;
+		}
+		
 }
 
 

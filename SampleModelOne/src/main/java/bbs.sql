@@ -26,6 +26,11 @@ select *
 from bbs
 where seq=2;
 
+UPDATE bbs
+SET del = 1
+WHERE seq = 2;
+
+
 
 select count(*) from bbs;
 

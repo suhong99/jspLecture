@@ -1,3 +1,4 @@
+<%@page import="dto.MemberDto"%>
 <%@page import="dto.BbsDto"%>
 <%@page import="dao.BbsDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -69,14 +70,30 @@ th{
 
 <br>
 
-<button type="button" onclick="answerBbs(<%=dto.getSeq() %>)">>답글</button>
-<button type="button" onclick="answerBbs(<%=dto.getSeq() %>)">>글수정</button>
-<button type="button" onclick="answerBbs(<%=dto.getSeq() %>)">>삭제</button>
+<button type="button" onclick="answerBbs(<%=dto.getSeq() %>)">답글</button>
+
+<%
+MemberDto mem = (MemberDto)request.getSession().getAttribute("login");
+if(mem.getId().equals(dto.getId())){
+	%>
+	<button type="button" onclick="updateBbs(<%=dto.getSeq() %>)">글수정</button>
+	<button type="button" onclick="deleteBbs(<%=dto.getSeq() %>)">삭제</button>
+	<%
+	}
+%>
 
 <script type="text/javascript">
 function answerBbs ( seq){
 	location.href = "answer.jsp?seq="+seq;
 	
+}
+
+function deleteBbs ( seq){
+	location.href = "bbsdelete.jsp?seq="+seq;
+}
+
+function updateBbs ( seq){
+	location.href = "bbsupdate.jsp?seq="+seq;
 }
 </script>
 
