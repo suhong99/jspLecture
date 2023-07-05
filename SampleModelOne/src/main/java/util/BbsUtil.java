@@ -28,5 +28,6 @@ public class BbsUtil {
 		
 		return depth == 0?"": ts+img;
 	}
-
+	
+	
 }

@@ -74,6 +74,8 @@ tr {
 <h1>게시판</h1>
 <br>
 
+<a href="calendarList.jsp">일정관리</a>
+
 <div class="center">
 
 <table class="table table-hover">
@@ -93,36 +95,37 @@ if(list == null || list.size() == 0){
 	</tr>
 	<%
 }else{
+	
 	for(int i = 0;i < list.size(); i++){
 		BbsDto bbs = list.get(i);
-		if(bbs.getDel()==1){
+		%>
+		<tr>
+			<td><%=i + 1 %></td>
+			
+			<%
+			if(bbs.getDel() == 0){
+				%>				
+				<td style="text-align: left;">
+					<a href="bbsdetail.jsp?seq=<%=bbs.getSeq() %>">
+						<%=BbsUtil.arrow(bbs.getDepth()) %>
+						<%=BbsUtil.titleDot(bbs.getTitle()) %>
+					</a>
+				</td>
+				<% 
+			}else{
 			%>
-			<tr>
-				<td><%= i + 1 %></td>
 				<td style="text-align: left;">
-					<a href="#">
-						삭제된 게시글 입니다.
-					</a>
-				</td>
-				<td><%= bbs.getReadcount() %></td>
-				<td><%= bbs.getId() %></td>
-			</tr>
-<%
-		} else {
-%>
-			<tr>
-				<td><%= i + 1 %></td>
-				<td style="text-align: left;">
-					<a href="bbsdetail.jsp?seq=<%= bbs.getSeq() %>">
-						<%= BbsUtil.arrow(bbs.getDepth()) %>
-						<%= BbsUtil.titleDot(bbs.getTitle()) %>
-					</a>
-				</td>
-				<td><%= bbs.getReadcount() %></td>
-				<td><%= bbs.getId() %></td>
-			</tr>
-<%
-		}
+					<%=BbsUtil.arrow(bbs.getDepth()) %>
+					<font color="#ff0000"> ****** 이 글은 작성자에 의해서 삭제되었습니다</font>
+				</td>			
+			<%
+			}
+			%>
+			
+			<td><%=bbs.getReadcount() %></td>
+			<td><%=bbs.getId() %></td>
+		</tr>
+		<% 
 	}
 }
 %>
@@ -161,7 +164,7 @@ if(list == null || list.size() == 0){
 </select>
 
 <div class="col-sm-3 my-1" style="width:auto;">
-	<input type="text" id="search" class="form-control" value="<%= search%>">
+	<input type="text" id="search" class="form-control" value="<%=search %>">
 </div>
 
 <button type="button" onclick="searchBtn()" class="btn btn-primary">검색</button>
@@ -174,12 +177,13 @@ if(list == null || list.size() == 0){
 
 <script type="text/javascript">
 // Java -> JavaScript
-let search = "<%=search%>";
-if(search!=""){
+let search = "<%=search %>"; 	// 문자열일 경우
+if(search != ""){
 	let obj = document.getElementById("choice");
-	obj.value= "<%=choice %>";
+	obj.value = "<%=choice %>";
 	obj.setAttribute("selected", "selected");
-}
+} 
+
 function searchBtn() {
 	let choice = document.getElementById("choice").value;
 //	let choice = $("#choice").val();
@@ -198,9 +202,8 @@ function searchBtn() {
 }
 
 function goPage( pageNum ) {
-				 
-		let choice = $("#choice").val();
-		let search = $("#search").val();
+	let choice = $("#choice").val();
+	let search = $("#search").val();
 
 	location.href = "bbslist.jsp?choice=" + choice + "&search=" + search + "&pageNumber=" + pageNum;
 }
