@@ -24,7 +24,7 @@ public class CalendarUtil {
 	// 일별 일정을 모두 볼 수 있는 bbsdaylist.jsp로 이동되도록 하는 함수(날짜표시)
 	public static String dayList(int year, int month, int day) {
 		String str = "";
-		str += String.format("&nbsp<a href = 'bbsdaylist.jsp?year=%d&month=%d & day=%d' style='color:black'><b>", 
+		str += String.format("&nbsp<a href = 'caldaylist.jsp?year=%d&month=%d & day=%d' style='color:black'><b>", 
 																									year,month,day);
 		str += String.format("%2d",day);
 		str += "</b></a>";
