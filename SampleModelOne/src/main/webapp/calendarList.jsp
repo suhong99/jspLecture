@@ -7,14 +7,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<% 
+<%
 	MemberDto login = (MemberDto)session.getAttribute("login");
-%>
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style type="text/css">
+th{
+  vertical-align : middle;
+}
+</style>
 
 </head>
 <body>
@@ -78,8 +91,10 @@
 							+ "</a>", 
 								year+1, month);
 	
+	
 	CalendarDao dao = CalendarDao.getInstance();
-	List<CalendarDto> list = dao.getCalendarList(login.getId(), year+ CalendarUtil.two(month+ ""));
+	List<CalendarDto> list = dao.getCalendarList(login.getId(), year + CalendarUtil.two(month + ""));
+		
 %>
 
 <div align="center">
@@ -91,23 +106,23 @@
 <tr height="80">
 	<td colspan="7" align="center">
 		<%=pp %>&nbsp;<%=p %>&nbsp;&nbsp;&nbsp;&nbsp;
-		
-		<font style="color: #3c3c3c; font-size: 40px; font-family: fantasy">
+				
+		<font style="color: #3c3c3c; font-size: 40px; font-family: fantasy; vertical-align: middle;">
 			<%=String.format("%d년&nbsp;&nbsp;%2d월", year, month) %>
-		</font>
+		</font>		
 		
 		&nbsp;&nbsp;&nbsp;&nbsp;<%=n %>&nbsp;<%=nn %>		
 	</td>
 </tr>
 
-<tr height="30" style="background-color: #333333; color: white;">
-	<th>sun</th>
-	<th>mon</th>
-	<th>tus</th>
-	<th>wed</th>
-	<th>thu</th>
-	<th>fri</th>
-	<th>sat</th>
+<tr height="30" style="background-color: #0000ff; color: white;">
+	<th class="text-center">sun</th>
+	<th class="text-center">mon</th>
+	<th class="text-center">tus</th>
+	<th class="text-center">wed</th>
+	<th class="text-center">thu</th>
+	<th class="text-center">fri</th>
+	<th class="text-center">sat</th>
 </tr>
 
 <tr height="120" align="left" valign="top">
@@ -120,11 +135,11 @@ for(int i = 1;i < dayOfWeek; i++){
 }
 
 // 날짜
-int lastday = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+int lastday = cal.getActualMaximum(Calendar.DAY_OF_MONTH); 
 for(int i = 1;i <= lastday; i++){
 	%>
 	<td style="color: #3c3c3c;padding-top: 5px">
-		<%=CalendarUtil.dayList(year, month, i) %>&nbsp;&nbsp;<%=CalendarUtil.calwrite(year, month, i) %>
+		<%=CalendarUtil.daylist(year, month, i) %>&nbsp;&nbsp;<%=CalendarUtil.calwrite(year, month, i) %>
 		<%=CalendarUtil.makeTable(year, month, i, list) %>
 	</td>	
 	<%
@@ -148,6 +163,11 @@ for(int i = 0;i < 7 - weekday; i++){
 </table>
 
 </div>
+
+<script type="text/javascript">
+
+
+</script>
 
 
 

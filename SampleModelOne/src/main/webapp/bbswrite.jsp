@@ -4,6 +4,14 @@
     
 <%
 	MemberDto mem = (MemberDto)session.getAttribute("login");
+	if(mem == null || mem.getId().equals("")){
+		%>
+		<script>
+		alert("로그인 해주십시오");
+		location.href = "login.jsp";
+		</script>
+		<%
+	}
 %>    
     
 <!DOCTYPE html>
